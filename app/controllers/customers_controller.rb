@@ -2,6 +2,7 @@ class CustomersController < ApplicationController
 
   def index
     @customers = Customer.all
+     @customer = current_customer
   end
 
   def show
@@ -23,6 +24,6 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:name, :profile_image)
+    params.require(:customer).permit(:name, :profile_image, :title)
   end
 end
