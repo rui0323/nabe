@@ -20,6 +20,12 @@ class CustomersController < ApplicationController
     redirect_to customer_path(@customer.id)
   end
 
+  def favorites
+    @customer = Customer.find(params[:id])
+    favorites= Favorite.where(customer_id: @customer.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
 
   private
 

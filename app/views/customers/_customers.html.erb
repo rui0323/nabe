@@ -1,0 +1,5 @@
+<% customers.each do |customer| %>
+  <%= link_to customer_path(customer) do %>
+    <%= customer.name %><br>
+  <% end %>
+<% end %>
