@@ -1,7 +1,7 @@
 <h1>Relationships#followers</h1>
 <p>Find me in app/views/relationships/followers.html.erb</p>
-<% if customers.exists? %>
-  <% customers.each do |customer| %>
+<% if @customers.exists? %>
+  <% @customers.each do |customer| %>
     <table>
       <thead>
         <tr>
@@ -13,8 +13,8 @@
       <tbody>
         <tr>
           <td><%= customer.name %></td>
-          <td>フォロー数: <%= user.followings.count %></td>
-          <td>フォロワー数: <%= user.followers.count %></td>
+          <td>フォロー数: <%= customer.followings.count %></td>
+          <td>フォロワー数: <%= customer.followers.count %></td>
         </tr>
       </tbody>
     </table>
