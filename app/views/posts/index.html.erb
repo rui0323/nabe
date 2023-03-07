@@ -1,4 +1,4 @@
-<div class="card-list-container py-5">
+<div class="card-list-container py-1">
   <% @posts.each do |post| %>
     <div class="card w-50 mx-auto mt-4 shadow-lg">
       <%= link_to post_path(post.id) do %>
@@ -18,15 +18,9 @@
               <p class="card-text">説明：<%= post.body %></p>
               <span><i class="fas fa-user"></i> By <%= post.customer.name %> ｜ </span>
               <span><%= link_to "#{post.post_comments.count} コメント", post_path(post.id), class:"text-dark" %> ｜</span>
-              <span><% if post.favorited_by?(current_customer) %>
-     　　　        　 <%= link_to post_favorites_path(post), class:"text-dark", method: :delete do %>
-                   ♥<%= post.favorites.count %> いいね
-                   <% end %>
-                   <% else %>
-                   <%= link_to post_favorites_path(post), class:"text-dark", method: :post do %>
-                   ♡<%= post.favorites.count %> いいね
-                   <% end %>
-                  <% end %></span>
+             <div id="favorite_buttons_<%= post.id %>">
+                <%= render "favorites/favorite", post: post %>
+              </div>
             </div>
           </div>
         </div>

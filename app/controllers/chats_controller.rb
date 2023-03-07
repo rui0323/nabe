@@ -8,7 +8,7 @@ class ChatsController < ApplicationController
       @room = customer_rooms.room
     else
       @room = Room.new
-      @room.save
+      @room.save!
       CustomerRoom.create(customer_id: current_customer.id, room_id: @room.id)
       CustomerRoom.create(customer_id: @customer.id, room_id: @room.id)
     end

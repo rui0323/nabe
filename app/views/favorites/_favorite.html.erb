@@ -1,0 +1,9 @@
+<% if post.favorited_by?(current_customer) %>
+                   <%= link_to post_favorites_path(post), class:"text-dark", method: :delete, remote: true do %>
+                   ♥<%= post.favorites.count %> いいね
+                   <% end %>
+                   <% else %>
+                   <%= link_to post_favorites_path(post), class:"text-dark", method: :post, remote: true do %>
+                   ♡<%= post.favorites.count %> いいね
+                   <% end %>
+                  <% end %>
