@@ -6,6 +6,8 @@ class PostCommentsController < ApplicationController
     comment.post_id = post.id
     if comment.save
      redirect_to post_path(post), notice: 'コメントを投稿しました'
+     @comment_post.create_notification_comment!(current_customer, comment.id)
+     render :index
     else
         @error_comment = comment
         @post = Post.find(params[:post_id])

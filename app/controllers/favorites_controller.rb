@@ -6,6 +6,11 @@ class FavoritesController < ApplicationController
     favorite = current_customer.favorites.new(post_id: @post.id)
     favorite.save
     #redirect_to posts_path
+    @post.create_notification_by(current_customer)
+      respond_to do |format|
+        format.html {redirect_to request.referrer}
+        format.js
+      end
   end
 
   def destroy
@@ -14,5 +19,7 @@ class FavoritesController < ApplicationController
     favorite.destroy
     #redirect_to posts_path
   end
+  
+ 
 
 end

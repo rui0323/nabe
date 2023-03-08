@@ -10,7 +10,10 @@ class Customer < ApplicationRecord
     has_many :customer_rooms
     has_many :chats
 
-     has_one_attached :profile_image
+    has_one_attached :profile_image
+     
+    has_many :active_notifications, class_name: "Notification", foreign_key: "visiter_id", dependent: :destroy
+    has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy 
 
  def get_profile_image(width, height)
   unless profile_image.attached?
@@ -40,6 +43,18 @@ end
 # フォローしているか判定
 def following?(customer)
   followings.include?(customer)
+end
+
+
+def create_notification_follow!(current_customer)
+    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
+    if temp.blank?
+      notification = current_customer.active_notifications.new(
+        visited_id: id,
+        action: 'follow'
+      )
+      notification.save if notification.valid?
+    end
 end
 
 end

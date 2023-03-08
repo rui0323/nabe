@@ -5,6 +5,7 @@ class RelationshipsController < ApplicationController
     following = current_customer.follow(params[:customer_id])
     following.save
     #redirect_to request.referer
+    @customer.create_notification_follow!(current_customer)
   end
   # フォロー外すとき
   def destroy
