@@ -32,19 +32,9 @@
   　　         <p class="card-title">
               タイトル：<%= post.title %></p>
             <p><%= link_to "#{post.post_comments.count} コメント", post_path(post.id) %></p>
-              <% if post.favorited_by?(current_customer) %>
-            <p>
-              <%= link_to post_favorites_path(post), method: :delete do %>
-              ♥<%= post.favorites.count %> いいね
-              <% end %>
-            </p>
-              <% else %>
-            <p>
-              <%= link_to post_favorites_path(post), method: :post do %>
-              ♡<%= post.favorites.count %> いいね
-             <% end %>
-            </p>
-              <% end %>
+           <div id="favorite_buttons_<%= post.id %>">
+                <%= render "favorites/favorite", post: post %>
+              </div>
 
           <%= paginate @posts %>
           <% end %>

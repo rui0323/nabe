@@ -19,6 +19,12 @@
         <ul class="nav justify-content-end">
     <% if customer_signed_in? %>
 
+        <li class="nav-item">
+         <span style="margin: 10px">
+       <%= link_to 'about', homes_about_path, class: 'nav-link text-dark' %>
+       </span>
+      </li>
+
       <li class="nav-item">
          <span style="margin: 10px">
        <%= link_to '投稿フォーム', new_post_path, class: 'nav-link text-dark' %>
